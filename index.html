@@ -4,11 +4,11 @@
 <title>Student Plate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--fs:1.15;--a:#0b8a4a;--bg:#f1f6f3;--card:#fff;--ink:#0d2016;--mut:#58695f;--line:#e0e9e3;--onacc:#fff;--tag:#fde68a;--tagink:#3b2a00;
---acc:var(--a);--soft:color-mix(in srgb,var(--a) 8%,#fff);--sh:0 1px 2px #0d201610,0 12px 28px -16px #0d201640;--sh2:0 2px 4px #0d201612,0 26px 44px -20px #0d201655;--ease:cubic-bezier(.2,.7,.2,1);
+:root{--fs:1.15;--a:#138848;--bg:#0d0d0d;--card:#171717;--ink:#fff;--mut:#b3b3b3;--line:#2d2d2d;--onacc:#fff;--tag:#fde68a;--tagink:#3b2a00;
+--acc:var(--a);--soft:color-mix(in srgb,var(--a) 16%,var(--card));--sh:0 1px 2px #0d201610,0 12px 28px -16px #0d201640;--sh2:0 2px 4px #0d201612,0 26px 44px -20px #0d201655;--ease:cubic-bezier(.2,.7,.2,1);
 --display:"Fraunces",Georgia,"Times New Roman",serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#09120e;--card:#12201a;--ink:#edf6f0;--mut:#9db6a7;--line:#23372b;--onacc:#04130a;--acc:color-mix(in srgb,var(--a) 58%,#fff);--soft:color-mix(in srgb,var(--a) 20%,var(--card));--sh:0 1px 2px #0008,0 12px 28px -16px #000b;--sh2:0 2px 4px #0008,0 26px 44px -20px #000d}}
-:root[data-theme="dark"]{--bg:#09120e;--card:#12201a;--ink:#edf6f0;--mut:#9db6a7;--line:#23372b;--onacc:#04130a;--acc:color-mix(in srgb,var(--a) 58%,#fff);--soft:color-mix(in srgb,var(--a) 20%,var(--card));--sh:0 1px 2px #0008,0 12px 28px -16px #000b;--sh2:0 2px 4px #0008,0 26px 44px -20px #000d}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0d0d;--card:#171717;--ink:#fff;--mut:#b3b3b3;--line:#2d2d2d;--onacc:#fff;--acc:var(--a);--soft:color-mix(in srgb,var(--a) 20%,var(--card));--sh:0 1px 2px #0008,0 12px 28px -16px #000b;--sh2:0 2px 4px #0008,0 26px 44px -20px #000d}}
+:root[data-theme="dark"]{--bg:#0d0d0d;--card:#171717;--ink:#fff;--mut:#b3b3b3;--line:#2d2d2d;--onacc:#fff;--acc:var(--a);--soft:color-mix(in srgb,var(--a) 20%,var(--card));--sh:0 1px 2px #0008,0 12px 28px -16px #000b;--sh2:0 2px 4px #0008,0 26px 44px -20px #000d}
 :root[data-hc]{--bg:#fff;--card:#fff;--ink:#000;--mut:#1c2620;--line:#222;--acc:#064e2b;--onacc:#fff;--soft:#e9efeb;--sh:none;--sh2:none}
 :root[data-accent=indigo]{--a:#4338ca}:root[data-accent=orange]{--a:#c2410c}
 *{box-sizing:border-box}
@@ -120,30 +120,47 @@ details.model code{background:var(--soft);border-radius:.45rem;padding:.06rem .5
 .tools{width:100%;border-radius:1.2rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.tools>*{flex:none}
 .hero{padding:1.8rem 1.3rem 1.6rem;border-radius:1.6rem}
 .panel{padding:1.2rem;border-radius:1.4rem}
-#nav{position:fixed;top:auto;bottom:0;left:0;right:0;width:auto;max-width:none;margin:0;border-radius:1.5rem 1.5rem 0 0;justify-content:space-around;padding:.45rem .3rem calc(.45rem + env(safe-area-inset-bottom,0px))}
-#nav button{flex-direction:column;gap:.05rem;font-size:.68rem;padding:.4rem .5rem}
-main{padding-bottom:6.8rem}#toast{bottom:6rem}}
+#nav{max-width:calc(100% - 1rem)}
+#nav button{font-size:.82rem;padding:.5rem .85rem}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* ---- images, deck-style theme and overrides ---- */
+.img{height:auto;aspect-ratio:10/7;background:none;text-shadow:none;padding:0}.img::after{display:none}.img svg,.ban svg{width:100%;height:100%;display:block}
+.ban{max-width:26rem;aspect-ratio:10/7;border-radius:1.3rem;overflow:hidden;margin:0 0 1.3rem;box-shadow:var(--sh)}
+.img img,.ban img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;background:repeating-linear-gradient(135deg,var(--soft) 0 10px,color-mix(in srgb,var(--acc) 12%,var(--card)) 10px 20px);color:var(--mut);font:700 .8rem inherit}
+.ph svg{width:2rem;height:2rem}
+.img,.ban{position:relative}
+.img>.up,.ban>.up{position:absolute;left:.6rem;bottom:.6rem;z-index:2;background:color-mix(in srgb,var(--card) 94%,transparent);color:var(--ink);border-radius:999px;padding:.3rem .8rem;font:800 .72rem inherit;cursor:pointer;box-shadow:var(--sh)}
+.img>.up:hover,.ban>.up:hover{background:var(--acc);color:var(--onacc)}
+.top b{text-transform:uppercase;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:1.05rem;letter-spacing:.03em}.top b svg{width:2rem;height:2rem}
+.hero::before,.hero::after{display:none}.hero{border-radius:1.2rem;padding:3.4rem 2rem 3rem;box-shadow:none;border:1px solid var(--line)}
+.hero h1{text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(2.2rem,7vw,4rem);max-width:40rem;line-height:1}
+main>h1{display:inline-block;background:var(--acc);color:#fff;padding:.2em .6em;border-radius:.25rem;font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.5em}
+.strip{height:9rem;border-radius:1rem;background-size:cover;background-position:center;margin:.2rem 0 1.2rem;border:1px solid var(--line)}
+a.l,button.l{color:color-mix(in srgb,var(--acc) 62%,#fff)}
+.img:has(img) .up,.ban:has(img) .up{display:none}
 </style></head><body>
-<div class="top"><b>🥗 Student Plate</b><div class="tools" role="toolbar" aria-label="Display settings">
-<span class="meta">🔍 Text size</span><button class="tb" onclick="fs(-1)" aria-label="Smaller text">A−</button><button class="tb" onclick="fs(1)" aria-label="Larger text">A+</button>
+<div class="top"><b><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#fff"/><path d="M11 8v6a2 2 0 0 0 2 2v8M13 8v6M15 8v6a2 2 0 0 1-2 2M21 8c-2 1-3 4-3 7h3v9" fill="none" stroke="#0d0d0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Student Plate</b><div class="tools" role="toolbar" aria-label="Display settings">
+<span class="meta">Text size</span><button class="tb" onclick="fs(-1)" aria-label="Smaller text">A−</button><button class="tb" onclick="fs(1)" aria-label="Larger text">A+</button>
 <button class="tb" id="hc" onclick="S.hc=!S.hc;persist();render()" aria-pressed="false">◐ High contrast</button>
-<button class="dot" style="background:#0b8a4a" onclick="acc('green')" aria-label="Green theme"></button><button class="dot" style="background:#4338ca" onclick="acc('indigo')" aria-label="Indigo theme"></button><button class="dot" style="background:#c2410c" onclick="acc('orange')" aria-label="Orange theme"></button></div></div>
+<button class="dot" style="background:#138848" onclick="acc('green')" aria-label="Green theme"></button><button class="dot" style="background:#4338ca" onclick="acc('indigo')" aria-label="Indigo theme"></button><button class="dot" style="background:#c2410c" onclick="acc('orange')" aria-label="Orange theme"></button></div></div>
 <nav id="nav" aria-label="Main"></nav>
 <main id="app"></main><div id="toast" role="status" aria-live="polite"></div>
 <script>
+/* ============================ DATA ============================ */
 const ING={
-chicken:{n:'Chicken breast',e:'🍗',cat:'Protein',kcal:165,alt:'chicken fillets',sub:['eggs']},
-pasta:{n:'Pasta',e:'🍝',cat:'Grain',kcal:350,alt:'macaroni, spaghetti',sub:['rice']},
-rice:{n:'Rice',e:'🍚',cat:'Grain',kcal:130,alt:'long grain rice',sub:['pasta']},
-eggs:{n:'Eggs',e:'🥚',cat:'Protein',kcal:143,alt:'large eggs',sub:['chicken']},
-onion:{n:'Onion',e:'🧅',cat:'Vegetable',kcal:40,alt:'brown onions',sub:[]},
-mayo:{n:'Mayonnaise',e:'🥫',cat:'Pantry',kcal:680,alt:'mayo',sub:[]},
-beans:{n:'Baked beans',e:'🫘',cat:'Pantry',kcal:95,alt:'tinned beans',sub:['eggs']},
-bread:{n:'Brown bread',e:'🍞',cat:'Grain',kcal:250,alt:'sliced loaf',sub:[]},
-potato:{n:'Potatoes',e:'🥔',cat:'Vegetable',kcal:77,alt:'spuds',sub:['rice','pasta']},
-mince:{n:'Beef mince',e:'🥩',cat:'Protein',kcal:250,alt:'ground beef',sub:['chicken']},
-tomato:{n:'Tinned tomatoes',e:'🍅',cat:'Pantry',kcal:32,alt:'chopped tomatoes',sub:[]}};
+chicken:{n:'Chicken breast',cat:'Protein',kcal:165,alt:'chicken fillets',sub:['eggs']},
+pasta:{n:'Pasta',cat:'Grain',kcal:350,alt:'macaroni, spaghetti',sub:['rice']},
+rice:{n:'Rice',cat:'Grain',kcal:130,alt:'long grain rice',sub:['pasta']},
+eggs:{n:'Eggs',cat:'Protein',kcal:143,alt:'large eggs',sub:['chicken']},
+onion:{n:'Onion',cat:'Vegetable',kcal:40,alt:'brown onions',sub:[]},
+mayo:{n:'Mayonnaise',cat:'Pantry',kcal:680,alt:'mayo',sub:[]},
+beans:{n:'Baked beans',cat:'Pantry',kcal:95,alt:'tinned beans',sub:['eggs']},
+bread:{n:'Brown bread',cat:'Grain',kcal:250,alt:'sliced loaf',sub:[]},
+potato:{n:'Potatoes',cat:'Vegetable',kcal:77,alt:'spuds',sub:['rice','pasta']},
+mince:{n:'Beef mince',cat:'Protein',kcal:250,alt:'ground beef',sub:['chicken']},
+tomato:{n:'Tinned tomatoes',cat:'Pantry',kcal:32,alt:'chopped tomatoes',sub:[]}};
 const STORES=['Shoprite','Checkers','Pick n Pay'];
 const SURL={'Shoprite':q=>'https://www.shoprite.co.za/search/all?q='+q,'Checkers':q=>'https://www.checkers.co.za/search?q='+q,'Pick n Pay':q=>'https://www.pnp.co.za/search/'+q};
 const P=[
@@ -160,15 +177,60 @@ const P=[
 ['tomato','Shoprite','Chopped tomatoes 400 g',9.99,400,'g'],['tomato','Checkers','Chopped tomatoes 400 g',11.49,400,'g'],['tomato','Pick n Pay','Chopped tomatoes 400 g',10.49,400,'g']
 ].map(a=>({ing:a[0],store:a[1],product:a[2],amt:a[3],pack:a[4],unit:a[5],promo:a[6]}));
 const R={
-r1:{t:'Chicken mayo pasta',e:'🍝',sum:'Creamy one-pot pasta with chicken.',prep:10,cook:15,srv:2,prot:28,kcal:520,fat:22,carb:55,meal:'Dinner',diet:['high-protein'],auth:'Student Kitchen',tech:['Boiling','Frying'],ing:[['chicken',250,'g'],['pasta',250,'g'],['mayo',60,'g'],['onion',100,'g']],steps:['Boil the pasta for 10 minutes and drain.','Fry the chopped onion, then the diced chicken until cooked.','Stir in the pasta and mayonnaise. Serve hot.']},
-r2:{t:'Egg fried rice',e:'🍳',sum:'Fast rice with scrambled egg and onion.',prep:5,cook:15,srv:2,prot:18,kcal:430,fat:14,carb:58,meal:'Lunch',diet:['vegetarian'],auth:'Student Kitchen',tech:['Frying'],ing:[['rice',200,'g'],['eggs',3,'each'],['onion',100,'g']],steps:['Cook the rice and let it cool.','Fry the onion, then scramble the eggs in the pan.','Add the rice and fry for 3 minutes.']},
-r3:{t:'Chicken rice bowl',e:'🍛',sum:'Simple chicken over rice, cheap and filling.',prep:10,cook:20,srv:2,prot:32,kcal:560,fat:12,carb:78,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['chicken',200,'g'],['rice',200,'g'],['onion',100,'g']],steps:['Boil the rice for 15 minutes.','Fry the onion and chicken pieces until browned.','Serve the chicken over the rice.']},
-r4:{t:'Egg and beans on toast',e:'🍞',sum:'A quick, filling breakfast for under R30.',prep:5,cook:8,srv:2,prot:20,kcal:480,fat:14,carb:62,meal:'Breakfast',diet:['vegetarian'],auth:'Student Kitchen',tech:['Frying'],ing:[['beans',410,'g'],['bread',4,'each'],['eggs',2,'each']],steps:['Warm the beans in a pot.','Fry the eggs and toast the bread.','Top the toast with beans and egg.']},
-r5:{t:'Mince and potato bake',e:'🥔',sum:'A hearty tray bake that feeds you for two days.',prep:15,cook:40,srv:3,prot:26,kcal:610,fat:24,carb:68,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Baking'],ing:[['mince',250,'g'],['potato',500,'g'],['onion',100,'g'],['tomato',400,'g']],steps:['Boil the sliced potatoes for 10 minutes.','Fry the onion and mince, then add the tomatoes.','Layer the mince and potatoes in a dish and bake for 25 minutes.']},
-r6:{t:'Tomato pasta',e:'🍅',sum:'The cheapest meal on the site, ready in 20 minutes.',prep:5,cook:15,srv:2,prot:14,kcal:480,fat:4,carb:92,meal:'Lunch',diet:['vegetarian','dairy-free'],auth:'Student Kitchen',tech:['Boiling'],ing:[['pasta',250,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Boil the pasta.','Fry the onion and add the tomatoes for 8 minutes.','Mix the sauce through the pasta.']},
-r7:{t:'Potato and egg hash',e:'🍳',sum:'Crispy potatoes with fried eggs.',prep:10,cook:20,srv:2,prot:16,kcal:520,fat:22,carb:62,meal:'Breakfast',diet:['vegetarian'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['potato',400,'g'],['eggs',3,'each'],['onion',100,'g']],steps:['Boil the diced potatoes for 8 minutes.','Fry them with the onion until crisp.','Make gaps and cook the eggs on top.']},
-r8:{t:'Mince rice bowl',e:'🍲',sum:'Saucy mince over rice, good for meal prep.',prep:10,cook:25,srv:3,prot:30,kcal:590,fat:18,carb:72,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['mince',250,'g'],['rice',200,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Cook the rice.','Brown the mince with the onion.','Add the tomatoes and simmer for 15 minutes. Serve over rice.']}};
+r1:{t:'Chicken mayo pasta',sum:'Creamy one-pot pasta with chicken.',prep:10,cook:15,srv:2,prot:28,kcal:520,fat:22,carb:55,meal:'Dinner',diet:['high-protein'],auth:'Student Kitchen',tech:['Boiling','Frying'],ing:[['chicken',250,'g'],['pasta',250,'g'],['mayo',60,'g'],['onion',100,'g']],steps:['Boil the pasta for 10 minutes and drain.','Fry the chopped onion, then the diced chicken until cooked.','Stir in the pasta and mayonnaise. Serve hot.']},
+r2:{t:'Egg fried rice',sum:'Fast rice with scrambled egg and onion.',prep:5,cook:15,srv:2,prot:18,kcal:430,fat:14,carb:58,meal:'Lunch',diet:['vegetarian'],auth:'Student Kitchen',tech:['Frying'],ing:[['rice',200,'g'],['eggs',3,'each'],['onion',100,'g']],steps:['Cook the rice and let it cool.','Fry the onion, then scramble the eggs in the pan.','Add the rice and fry for 3 minutes.']},
+r3:{t:'Chicken rice bowl',sum:'Simple chicken over rice, cheap and filling.',prep:10,cook:20,srv:2,prot:32,kcal:560,fat:12,carb:78,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['chicken',200,'g'],['rice',200,'g'],['onion',100,'g']],steps:['Boil the rice for 15 minutes.','Fry the onion and chicken pieces until browned.','Serve the chicken over the rice.']},
+r4:{t:'Egg and beans on toast',sum:'A quick, filling breakfast for under R30.',prep:5,cook:8,srv:2,prot:20,kcal:480,fat:14,carb:62,meal:'Breakfast',diet:['vegetarian'],auth:'Student Kitchen',tech:['Frying'],ing:[['beans',410,'g'],['bread',4,'each'],['eggs',2,'each']],steps:['Warm the beans in a pot.','Fry the eggs and toast the bread.','Top the toast with beans and egg.']},
+r5:{t:'Mince and potato bake',sum:'A hearty tray bake that feeds you for two days.',prep:15,cook:40,srv:3,prot:26,kcal:610,fat:24,carb:68,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Baking'],ing:[['mince',250,'g'],['potato',500,'g'],['onion',100,'g'],['tomato',400,'g']],steps:['Boil the sliced potatoes for 10 minutes.','Fry the onion and mince, then add the tomatoes.','Layer the mince and potatoes in a dish and bake for 25 minutes.']},
+r6:{t:'Tomato pasta',sum:'The cheapest meal on the site, ready in 20 minutes.',prep:5,cook:15,srv:2,prot:14,kcal:480,fat:4,carb:92,meal:'Lunch',diet:['vegetarian','dairy-free'],auth:'Student Kitchen',tech:['Boiling'],ing:[['pasta',250,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Boil the pasta.','Fry the onion and add the tomatoes for 8 minutes.','Mix the sauce through the pasta.']},
+r7:{t:'Potato and egg hash',sum:'Crispy potatoes with fried eggs.',prep:10,cook:20,srv:2,prot:16,kcal:520,fat:22,carb:62,meal:'Breakfast',diet:['vegetarian'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['potato',400,'g'],['eggs',3,'each'],['onion',100,'g']],steps:['Boil the diced potatoes for 8 minutes.','Fry them with the onion until crisp.','Make gaps and cook the eggs on top.']},
+r8:{t:'Mince rice bowl',sum:'Saucy mince over rice, good for meal prep.',prep:10,cook:25,srv:3,prot:30,kcal:590,fat:18,carb:72,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['mince',250,'g'],['rice',200,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Cook the rice.','Brown the mince with the onion.','Add the tomatoes and simmer for 15 minutes. Serve over rice.']}};
 
+
+Object.assign(ING,{
+oats:{n:'Rolled oats',cat:'Grain',kcal:370,alt:'porridge oats',sub:['bread']},
+banana:{n:'Bananas',cat:'Fruit',kcal:89,alt:'ripe bananas',sub:[]},
+tuna:{n:'Tinned tuna',cat:'Protein',kcal:116,alt:'tuna chunks',sub:['eggs']},
+lentils:{n:'Brown lentils',cat:'Pantry',kcal:116,alt:'tinned lentils',sub:['beans']},
+pap:{n:'Maize meal',cat:'Grain',kcal:360,alt:'pap, mealie meal',sub:['rice']},
+cabbage:{n:'Cabbage',cat:'Vegetable',kcal:25,alt:'green cabbage',sub:[]},
+carrot:{n:'Carrots',cat:'Vegetable',kcal:41,alt:'fresh carrots',sub:[]}});
+P.push(...[
+['oats','Shoprite','Rolled oats 1 kg',24.99,1000,'g'],['oats','Checkers','Rolled oats 1 kg',27.99,1000,'g'],['oats','Pick n Pay','Rolled oats 1 kg',26.49,1000,'g'],
+['banana','Shoprite','Bananas 1 kg',19.99,1000,'g'],['banana','Checkers','Bananas 1 kg',22.99,1000,'g'],['banana','Pick n Pay','Bananas 1 kg',21.49,1000,'g'],
+['tuna','Shoprite','Tuna chunks 170 g',16.99,170,'g'],['tuna','Checkers','Tuna chunks 170 g',18.99,170,'g'],['tuna','Pick n Pay','Tuna chunks 170 g',17.49,170,'g','Save R2'],
+['lentils','Shoprite','Lentils 410 g tin',12.99,410,'g'],['lentils','Checkers','Lentils 410 g tin',14.49,410,'g'],['lentils','Pick n Pay','Lentils 410 g tin',13.49,410,'g'],
+['pap','Shoprite','Maize meal 2 kg',29.99,2000,'g'],['pap','Checkers','Maize meal 2 kg',32.99,2000,'g'],['pap','Pick n Pay','Maize meal 2 kg',31.49,2000,'g'],
+['cabbage','Shoprite','Cabbage 1 kg',14.99,1000,'g'],['cabbage','Checkers','Cabbage 1 kg',17.99,1000,'g'],['cabbage','Pick n Pay','Cabbage 1 kg',16.49,1000,'g'],
+['carrot','Shoprite','Carrots 1 kg',17.99,1000,'g'],['carrot','Checkers','Carrots 1 kg',19.99,1000,'g'],['carrot','Pick n Pay','Carrots 1 kg',18.99,1000,'g']
+].map(a=>({ing:a[0],store:a[1],product:a[2],amt:a[3],pack:a[4],unit:a[5],promo:a[6]})));
+Object.assign(R,{
+r9:{t:'Banana oat porridge',sum:'Warm oats with sliced banana, ready in 10 minutes.',prep:3,cook:7,srv:2,prot:12,kcal:380,fat:6,carb:70,meal:'Breakfast',diet:['vegetarian','dairy-free'],auth:'Student Kitchen',tech:['Boiling'],ing:[['oats',100,'g'],['banana',200,'g']],steps:['Simmer the oats in 500 ml water for 5 minutes, stirring.','Slice the bananas and stir half through.','Top with the rest and serve warm.']},
+r10:{t:'Tuna tomato pasta',sum:'Cheap protein-packed pasta from the cupboard.',prep:5,cook:15,srv:2,prot:30,kcal:560,fat:8,carb:85,meal:'Lunch',diet:['high-protein','dairy-free'],auth:'Student Kitchen',tech:['Boiling','Frying'],ing:[['pasta',250,'g'],['tuna',170,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Boil the pasta and drain.','Fry the onion, add the tomatoes and simmer for 8 minutes.','Fold in the tuna and the pasta.']},
+r11:{t:'Lentil and carrot stew',sum:'A thick, filling stew that keeps for days.',prep:10,cook:30,srv:3,prot:20,kcal:430,fat:3,carb:80,meal:'Dinner',diet:['vegetarian','dairy-free'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['lentils',410,'g'],['carrot',300,'g'],['onion',100,'g'],['tomato',400,'g'],['rice',150,'g']],steps:['Cook the rice.','Fry the onion and diced carrot for 5 minutes.','Add the lentils and tomatoes and simmer for 20 minutes. Serve over rice.']},
+r12:{t:'Pap with tomato relish',sum:'A South African staple with a quick tomato sauce.',prep:5,cook:25,srv:3,prot:9,kcal:380,fat:2,carb:78,meal:'Dinner',diet:['vegetarian','dairy-free'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['pap',250,'g'],['tomato',400,'g'],['onion',100,'g']],steps:['Boil 750 ml water, stir in the maize meal and cook covered for 20 minutes.','Fry the onion, add the tomatoes and simmer for 10 minutes.','Serve the relish over the pap.']},
+r13:{t:'Cabbage and mince stir-fry',sum:'Fast, cheap and full of veg.',prep:10,cook:20,srv:3,prot:29,kcal:540,fat:20,carb:55,meal:'Dinner',diet:['high-protein'],auth:'Campus Cook',tech:['Boiling','Frying'],ing:[['mince',250,'g'],['cabbage',400,'g'],['carrot',150,'g'],['onion',100,'g'],['rice',200,'g']],steps:['Cook the rice.','Brown the mince with the onion.','Add the shredded cabbage and carrot and fry for 8 minutes. Serve with rice.']},
+r14:{t:'Tuna mayo sandwich',sum:'No cooking and ready in 5 minutes.',prep:5,cook:0,srv:2,prot:24,kcal:410,fat:14,carb:42,meal:'Lunch',diet:['high-protein'],auth:'Student Kitchen',tech:['No cook'],ing:[['bread',4,'each'],['tuna',170,'g'],['mayo',30,'g']],steps:['Drain the tuna and mix with the mayonnaise.','Spread on two slices of bread.','Top with the other slices and cut in half.']},
+r15:{t:'Chicken and veg traybake',sum:'One tray, minimal washing up.',prep:15,cook:40,srv:3,prot:30,kcal:480,fat:10,carb:52,meal:'Dinner',diet:['high-protein','dairy-free'],auth:'Campus Cook',tech:['Baking'],ing:[['chicken',300,'g'],['potato',600,'g'],['carrot',200,'g'],['onion',100,'g']],steps:['Heat the oven to 200 °C.','Chop everything into chunks and spread on a tray.','Roast for 40 minutes, turning once.']},
+r16:{t:'Banana egg pancakes',sum:'Three ingredients, no flour.',prep:5,cook:10,srv:2,prot:14,kcal:360,fat:10,carb:52,meal:'Breakfast',diet:['vegetarian'],auth:'Student Kitchen',tech:['Frying'],ing:[['eggs',2,'each'],['banana',200,'g'],['oats',80,'g']],steps:['Mash the bananas and mix with the eggs and oats.','Fry spoonfuls in a non-stick pan for 2 minutes a side.','Serve warm.']},
+r17:{t:'Lentil and bean chilli',sum:'Cheap, high-fibre and good for batch cooking.',prep:10,cook:25,srv:3,prot:22,kcal:420,fat:3,carb:74,meal:'Lunch',diet:['vegetarian','dairy-free'],auth:'Student Kitchen',tech:['Frying','Boiling'],ing:[['beans',410,'g'],['lentils',410,'g'],['onion',100,'g'],['tomato',400,'g']],steps:['Fry the onion until soft.','Add the tomatoes, lentils and beans.','Simmer for 20 minutes.']}});
+
+/* ============================ IMAGES ============================
+   Put your photos in the "images" folder, named after the id, as .jpg:
+     recipes:      images/r1.jpg ... images/r17.jpg
+     ingredients:  images/chicken.jpg, images/rice.jpg, images/pasta.jpg ...
+   Anything missing shows the grey "Photo placeholder" automatically.
+   Optional: override a single image here, e.g.  IMG.r1='images/my-pasta.png'
+   ================================================================ */
+const IMG={};
+let PH={};try{PH=JSON.parse(localStorage.getItem('sp_img'))||{}}catch(e){}
+const HOLDER='<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg><span>Photo placeholder</span></div>';
+const pic=id=>`<img src="${PH[id]||IMG[id]||'images/'+id+'.jpg'}" alt="" loading="lazy" onerror="this.outerHTML=HOLDER">`;
+const up=id=>`<label class="up" onclick="event.stopPropagation()"><input type="file" accept="image/*" hidden onchange="addPic('${id}',this)"><span class="a">Add photo</span><span class="c">Change photo</span></label>`;
+function addPic(id,inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),m=Math.min(1,800/im.width);c.width=im.width*m;c.height=im.height*m;c.getContext('2d').drawImage(im,0,0,c.width,c.height);PH[id]=c.toDataURL('image/jpeg',.82);try{localStorage.setItem('sp_img',JSON.stringify(PH))}catch(e){toast('Photo shown, but too large to remember after you close the page.')}render()};im.src=r.result};r.readAsDataURL(f)}
+const rart=k=>pic(k);
+const PHOTO={a:'images/hero.jpg',b:'images/ingredients-banner.jpg',c:'images/planner-banner.jpg'};
+/* ============================ APP STATE ============================ */
 const T={prot:60,kcal:2000,budget:60},FS=[1,1.15,1.3,1.5];
 const load=()=>{try{return JSON.parse(localStorage.getItem('sp2'))||{}}catch(e){return{}}};
 const L0=load();Object.assign(T,L0.T||{});
@@ -190,47 +252,48 @@ function acc(a){S.ac=a;persist();render()}
 function tog(k){const on=!S.saved.has(k);on?S.saved.add(k):S.saved.delete(k);persist();render();
 toast(on?`★ Saved “${R[k].t}”. <button class="l" onclick="go('saved')">View saved recipes</button>`:`Removed “${R[k].t}” from saved recipes.`)}
 const bar=()=>`<div class="bar"><label>My store <select onchange="S.store=this.value;render()">${['Cheapest',...STORES].map(s=>`<option ${s===S.store?'selected':''}>${s}</option>`).join('')}</select></label></div>`;
-function card(k){const r=R[k],on=S.saved.has(k);return `<article class="card" onclick="go('recipe','${k}')"><div class="img">${r.e}<button class="sv ${on?'on':''}" onclick="event.stopPropagation();tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button></div><h3>${r.t}</h3><div class="meta">${r.sum}</div><div class="pp"><b>${z(ps(k))}</b> per serving</div><div class="meta">${z(cost(r))} total, ${r.prep+r.cook} min</div><div class="tags" style="margin-top:.5rem"><span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span>${r.diet.map(d=>`<span class="tag">${d}</span>`).join('')}</div></article>`}
+/* ============================ SCREENS ============================ */
+function card(k){const r=R[k],on=S.saved.has(k);return `<article class="card" onclick="go('recipe','${k}')"><div class="img">${rart(k)}${up(k)}<button class="sv ${on?'on':''}" onclick="event.stopPropagation();tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button></div><h3>${r.t}</h3><div class="meta">${r.sum}</div><div class="pp"><b>${z(ps(k))}</b> per serving</div><div class="meta">${z(cost(r))} total, ${r.prep+r.cook} min</div><div class="tags" style="margin-top:.5rem"><span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span>${r.diet.map(d=>`<span class="tag">${d}</span>`).join('')}</div></article>`}
 const hl=()=>Object.keys(R).filter(k=>ps(k)<=S.max&&(S.meal==='All'||R[k].meal===S.meal)&&(!S.q||(R[k].t+R[k].ing.map(l=>ING[l[0]].n).join(' ')).toLowerCase().includes(S.q)));
 function srch(v){S.q=v.trim().toLowerCase();const ks=hl();gr.innerHTML=ks.map(card).join('')||'<p>No recipes match. Clear the search, raise the limit or choose All.</p>';cnt.textContent=ks.length+' recipes shown'}
 function home(){const ks=hl(),low=Object.keys(R).sort((a,b)=>ps(a)-ps(b))[0];
-return `<div class="hero"><h1>Eat well on a student budget</h1><p>${Object.keys(R).length} recipes priced from real store packs. Cheapest right now: <b>${R[low].t}</b> at ${z(ps(low))} per serving.</p><input type="search" placeholder="Search a meal or ingredient, e.g. chicken" aria-label="Search recipes" value="${S.q}" oninput="srch(this.value)"></div>
+return `<div class="hero" style="background:linear-gradient(90deg,#0d0d0def,#0d0d0dc4 48%,#0d0d0d40),url(${PHOTO.a}) center/cover"><h1>Eat Smart, Save money</h1><p>${Object.keys(R).length} recipes priced from real store packs. Cheapest right now: <b>${R[low].t}</b> at ${z(ps(low))} per serving.</p><input type="search" placeholder="Search a meal or ingredient, e.g. chicken" aria-label="Search recipes" value="${S.q}" oninput="srch(this.value)"></div>
 <div class="bar"><div class="chips">${['All','Breakfast','Lunch','Dinner'].map(m=>`<button class="chip ${S.meal===m?'on':''}" onclick="S.meal='${m}';render()">${m}</button>`).join('')}</div>
 <label>My store <select onchange="S.store=this.value;render()">${['Cheapest',...STORES].map(s=>`<option ${s===S.store?'selected':''}>${s}</option>`).join('')}</select></label>
 <label>Max per serving <b id="mx">${z(S.max)}</b> <input type="range" min="5" max="40" step="5" value="${S.max}" oninput="mx.textContent=z(+this.value)" onchange="S.max=+this.value;render()"></label></div>
 <p class="meta" id="cnt">${ks.length} recipes shown</p><div class="grid" id="gr">${ks.map(card).join('')||'<p>No recipes match. Clear the search, raise the limit or choose All.</p>'}</div>
 ${model(['Recipe (card)','Price','Store','Meal Type'],'Cards reuse title, image, time and nutrition from <code>Recipe</code>. The per-serving cost is derived from <code>Price</code> records at your chosen store, so it changes with the store.')}`}
 function recipe(){const k=S.id,r=R[k],on=S.saved.has(k),more=Object.keys(R).filter(x=>x!==k&&R[x].auth===r.auth);
-return `<a class="l back" onclick="go('home')">← All recipes</a><div class="panel"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem"><div><h1>${r.e} ${r.t}</h1><div class="meta">By ${r.auth}, ${r.meal}. ${r.prep} min prep + ${r.cook} min cook. Serves ${r.srv}.</div></div><div><button class="save ${on?'on':''}" onclick="tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button>${on?`<div class="meta" style="margin-top:.3rem">Saved. <a class="l" onclick="go('saved')">Open saved recipes</a></div>`:''}</div></div>
+return `<a class="l back" onclick="go('home')">← All recipes</a><div class="panel"><div class="ban">${rart(k)}${up(k)}</div><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem"><div><h1>${r.t}</h1><div class="meta">By ${r.auth}, ${r.meal}. ${r.prep} min prep + ${r.cook} min cook. Serves ${r.srv}.</div></div><div><button class="save ${on?'on':''}" onclick="tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button>${on?`<div class="meta" style="margin-top:.3rem">Saved. <a class="l" onclick="go('saved')">Open saved recipes</a></div>`:''}</div></div>
 <p>${r.sum}</p><div>${r.tech.map(t=>`<span class="tag">${t}</span>`).join('')}<span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span></div>
 <div class="pp" style="margin-top:.6rem"><b>${z(ps(k))}</b> per serving, ${z(cost(r))} total</div></div>
 <div class="panel"><h2>Nutrition per serving</h2><div class="nut">${[['Energy',r.kcal+' kcal'],['Protein',r.prot+' g'],['Fat',r.fat+' g'],['Carbs',r.carb+' g']].map(x=>`<div><b>${x[1]}</b><span>${x[0]}</span></div>`).join('')}</div>
 <p class="meta">Protein is ${Math.round(r.prot/T.prot*100)}% of your daily target (${T.prot} g).</p>
-<button class="save on" onclick="logMeal('${k}',1)">Log 1 serving</button></div>
+<button class="save on" onclick="logMeal('${k}',1)">+ Add this meal to my tracker</button></div>
 <div class="panel"><h2>Ingredients and cost</h2>${bar()}<div class="scroll"><table><tr><th>Ingredient</th><th>Amount</th><th>Product</th><th>Cost</th><th>Shop</th></tr>
 ${r.ing.map(l=>{const p=pick(l[0]);return `<tr><td><a class="l" onclick="go('ing','${l[0]}')">${ING[l[0]].n}</a></td><td>${l[1]} ${l[2]}</td><td>${p.product}, ${z(p.amt)} (${p.store})</td><td>${z(line(l))}</td><td>${buy(p)}</td></tr>`}).join('')}
 <tr><th colspan="3">Estimated cost</th><th colspan="2">${z(cost(r))}</th></tr></table></div><p class="meta">Cost = quantity used ÷ pack size × price. Illustrative prices.</p></div>
 <div class="panel"><h2>Method</h2><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
 ${more.length?`<h2>More from ${r.auth}</h2><div class="grid">${more.map(card).join('')}</div>`:''}
 ${model(['Recipe','Recipe Ingredient','Ingredient','Price','Cooking Technique','Chef/Author','Saved Recipe','Meal Log'],'Each ingredient row is a <code>Recipe Ingredient</code> (quantity, unit) that references an <code>Ingredient</code>. “More from this author” is a reverse query over the author reference.')}`}
-function ings(){return `<h1>Ingredients</h1><p class="meta">Pick an ingredient to see its recipes and compare store prices.</p><div class="grid">${Object.keys(ING).map(k=>{const g=ING[k],c=cheapest(k);return `<article class="card" onclick="go('ing','${k}')"><div class="img">${g.e}</div><h3>${g.n}</h3><div class="meta">${g.cat}</div><div class="pp">Cheapest: <b>${z(c.amt)}</b></div><div class="meta">${c.product} at ${c.store}</div></article>`}).join('')}</div>
+function ings(){return `<h1>Ingredients</h1><div class="strip" style="background-image:url(${PHOTO.b})"></div><p class="meta">Pick an ingredient to see its recipes and compare store prices.</p><div class="grid">${Object.keys(ING).map(k=>{const g=ING[k],c=cheapest(k);return `<article class="card" onclick="go('ing','${k}')"><div class="img">${pic(k)}${up(k)}</div><h3>${g.n}</h3><div class="meta">${g.cat}</div><div class="pp">Cheapest: <b>${z(c.amt)}</b></div><div class="meta">${c.product} at ${c.store}</div></article>`}).join('')}</div>
 ${model(['Ingredient','Price','Store'],'The index lists every <code>Ingredient</code> with its lowest current <code>Price</code> and the <code>Store</code> that offers it.')}`}
 function ing(){const k=S.id,g=ING[k],rs=Object.keys(R).filter(x=>R[x].ing.some(l=>l[0]===k));
-return `<a class="l back" onclick="go('ings')">← All ingredients</a><div class="panel"><h1>${g.e} ${g.n}</h1><div class="meta">Category: ${g.cat}. ${g.kcal} kcal per 100 g. Also called ${g.alt}.</div>
+return `<a class="l back" onclick="go('ings')">← All ingredients</a><div class="panel"><h1>${g.n}</h1><div class="meta">Category: ${g.cat}. ${g.kcal} kcal per 100 g. Also called ${g.alt}.</div>
 <p><b>Swaps:</b> ${g.sub.length?g.sub.map(s=>`<a class="l" onclick="go('ing','${s}')">${ING[s].n}</a>`).join(', '):'none listed'}</p>
 <button class="save on" onclick="go('cmp','${k}')">Compare store prices</button></div>
 <div class="panel"><h2>Recipes that use ${g.n.toLowerCase()}</h2><div class="grid">${rs.map(card).join('')}</div></div>
 ${model(['Ingredient','Recipe Ingredient','Recipe (card)','Price'],'The same <code>Recipe</code> cards are reused here, found through <code>Recipe Ingredient</code>. Swaps are <code>Ingredient</code> to <code>Ingredient</code> references.')}`}
 function cmp(){const k=S.id,g=ING[k],ps2=pricesFor(k),best=cheapest(k),u=ps2[0].unit;
-return `<a class="l back" onclick="go('ing','${k}')">← ${g.n}</a><div class="panel"><h1>${g.e} ${g.n}: store prices</h1><p class="meta">Prices checked 25 September 2026 (illustrative). Choose Buy to open the store's own product search.</p><div class="scroll"><table><tr><th>Store</th><th>Product</th><th>Price</th><th>${u==='g'?'Per 100 g':'Per item'}</th><th></th><th>Shop</th></tr>
+return `<a class="l back" onclick="go('ing','${k}')">← ${g.n}</a><div class="panel"><h1>${g.n}: store prices</h1><p class="meta">Prices checked 25 September 2026 (illustrative). Choose Buy to open the store's own product search.</p><div class="scroll"><table><tr><th>Store</th><th>Product</th><th>Price</th><th>${u==='g'?'Per 100 g':'Per item'}</th><th></th><th>Shop</th></tr>
 ${ps2.map(p=>`<tr class="${p===best?'best':''}"><td>${p.store}</td><td>${p.product}</td><td>${z(p.amt)}</td><td>${z(p.amt/p.pack*(u==='g'?100:1))}</td><td>${p===best?'Cheapest ':''}${p.promo?`<span class="promo">${p.promo}</span>`:''}</td><td>${buy(p)}</td></tr>`).join('')}</table></div></div>
 ${model(['Price','Store','Ingredient'],'Each row is a <code>Price</code> record linked to a <code>Store</code>. Change a price and every recipe cost updates, with no recipe edited.')}`}
 function saved(){const l=Object.keys(R).filter(k=>S.saved.has(k)),list={};l.forEach(k=>R[k].ing.forEach(x=>list[x[0]]=(list[x[0]]||0)+x[1]));
 return `<h1>Saved recipes</h1>${bar()}<div class="grid">${l.map(card).join('')||'<p>Nothing saved yet. Choose “Save recipe” on any recipe card.</p>'}</div>
-<div class="panel" style="margin-top:1rem"><h2>Shopping list</h2><div class="scroll"><table>${Object.keys(list).map(i=>{const p=cheapest(i);return `<tr><td>${ING[i].e} ${ING[i].n}</td><td>${list[i]} ${p.unit}</td><td><a class="l" onclick="go('cmp','${i}')">Cheapest: ${p.store}</a></td><td>${buy(p)}</td></tr>`}).join('')||'<tr><td>Empty. Save a recipe to build your list.</td></tr>'}</table></div></div>
+<div class="panel" style="margin-top:1rem"><h2>Shopping list</h2><div class="scroll"><table>${Object.keys(list).map(i=>{const p=cheapest(i);return `<tr><td>${ING[i].n}</td><td>${list[i]} ${p.unit}</td><td><a class="l" onclick="go('cmp','${i}')">Cheapest: ${p.store}</a></td><td>${buy(p)}</td></tr>`}).join('')||'<tr><td>Empty. Save a recipe to build your list.</td></tr>'}</table></div></div>
 ${model(['Saved Recipe','Recipe (card)','Recipe Ingredient','Price'],'The shopping list adds up <code>Recipe Ingredient</code> quantities across saved recipes: same content, new presentation.')}`}
 function logMeal(k,n,slot,stay){S.log.push({k,srv:n,slot:slot||R[k].meal});persist();stay?render():go('track');toast(`✓ Logged ${R[k].t} in your tracker.`)}
-function remind(s){toast(`🔔 Time for ${s.toLowerCase()}. <button class="l" onclick="go('track')">Log your meal</button>`,9000);try{if(window.Notification&&Notification.permission==='granted')new Notification('Student Plate',{body:'Time for '+s.toLowerCase()+'. Log your meal.'})}catch(e){}}
+function remind(s){toast(`Time for ${s.toLowerCase()}. <button class="l" onclick="go('track')">Log your meal</button>`,9000);try{if(window.Notification&&Notification.permission==='granted')new Notification('Student Plate',{body:'Time for '+s.toLowerCase()+'. Log your meal.'})}catch(e){}}
 function remOn(b){S.rem.on=b;persist();try{if(b&&window.Notification&&Notification.permission==='default')Notification.requestPermission()}catch(e){}toast(b?'Reminders on. They show while Student Plate is open.':'Reminders off.')}
 setInterval(()=>{if(!S.rem.on)return;const hm=new Date().toTimeString().slice(0,5);for(const s in S.rem.t)if(S.rem.t[s]===hm&&S.last!==s+hm){S.last=s+hm;remind(s)}},20000);
 function track(){const L=S.log.map(e=>{const r=R[e.k];return{...e,r,kcal:r.kcal*e.srv,prot:r.prot*e.srv,fat:r.fat*e.srv,carb:r.carb*e.srv,c:ps(e.k)*e.srv}});
@@ -243,7 +306,7 @@ return `<h1>Meal tracker</h1>${bar()}<div class="panel"><h2>Today</h2>${m('Energ
 <div class="panel"><h2>Meals logged</h2><div class="scroll"><table><tr><th>Meal</th><th>Recipe</th><th>Servings</th><th>Energy</th><th>Protein</th><th>Cost</th><th></th></tr>
 ${L.map((x,i)=>`<tr><td>${x.slot}</td><td><a class="l" onclick="go('recipe','${x.k}')">${x.r.t}</a></td><td>${x.srv}</td><td>${x.kcal} kcal</td><td>${x.prot} g</td><td>${z(x.c)}</td><td><button class="save" onclick="S.log.splice(${i},1);persist();render()">Remove</button></td></tr>`).join('')||'<tr><td colspan="7">Nothing logged yet. Add a meal below.</td></tr>'}</table></div>
 <div class="bar" style="margin-top:1rem"><select id="rsel" aria-label="Recipe">${Object.keys(R).map(k=>`<option value="${k}">${R[k].t}</option>`).join('')}</select><select id="ssel" aria-label="Meal">${opt(['Breakfast','Lunch','Dinner','Snack'])}</select><select id="nsel" aria-label="Servings">${opt([1,2])}</select><button class="save on" onclick="logMeal(rsel.value,+nsel.value,ssel.value,true)">Add meal to tracker</button></div></div>
-<div class="panel"><h2>🔔 Meal reminders</h2><label><input type="checkbox" ${S.rem.on?'checked':''} onchange="remOn(this.checked)"> Remind me to log my meals</label>
+<div class="panel"><h2>Meal reminders</h2><label><input type="checkbox" ${S.rem.on?'checked':''} onchange="remOn(this.checked)"> Remind me to log my meals</label>
 <div class="bar" style="margin-top:.7rem">${['Breakfast','Lunch','Dinner'].map(s=>`<label>${s} <input type="time" value="${S.rem.t[s]}" onchange="S.rem.t['${s}']=this.value;persist()"></label>`).join('')}<button class="save" onclick="remind('Lunch')">Preview a reminder</button></div>
 <p class="meta">Reminders appear while Student Plate is open. A full app would send push notifications.</p></div>
 ${model(['Meal Log','Recipe','Nutrition','Price','User Profile'],'Each entry is a <code>Meal Log</code> linking the user to a <code>Recipe</code> with servings and meal slot. Energy, protein and cost come from the recipe, not retyped. Targets and reminder times belong to <code>User Profile</code>.')}`}
@@ -271,7 +334,7 @@ const need={};g.flat().forEach(k=>R[k].ing.forEach(l=>need[l[0]]=(need[l[0]]||0)
 const gl=Object.keys(need).map(i=>{const p=pick(i),n=Math.ceil(need[i]/p.pack-1e-9);return{i,p,need:need[i],n,c:n*p.amt}});
 const shop=gl.reduce((a,x)=>a+x.c,0);S.planIds=[...new Set(g.flat())];
 const t=(a,b)=>`<div><b>${a}</b><span>${b}</span></div>`;
-return `<h1>Budget planner</h1><div class="panel"><h2>Your food money for the month</h2>
+return `<h1>Budget planner</h1><div class="strip" style="background-image:url(${PHOTO.c})"></div><div class="panel"><h2>Your food money for the month</h2>
 <div class="bar"><label>Amount R <input type="number" value="${S.month}" style="width:6.5rem" onchange="S.month=Math.max(0,+this.value||0);render()"></label>
 <label>Meals a day <select onchange="S.mpd=+this.value;render()"><option value="2" ${S.mpd===2?'selected':''}>2 (lunch, dinner)</option><option value="3" ${S.mpd===3?'selected':''}>3 (with breakfast)</option></select></label>
 <label>My store <select onchange="S.store=this.value;render()">${['Cheapest',...STORES].map(x=>`<option ${x===S.store?'selected':''}>${x}</option>`).join('')}</select></label></div>
@@ -290,6 +353,6 @@ d.style.setProperty('--fs',FS[S.fs]);d.dataset.accent=S.ac;S.hc?d.setAttribute('
 document.getElementById('hc').setAttribute('aria-pressed',S.hc);
 document.getElementById('app').innerHTML=V[S.v]();
 const cur={recipe:'home',ing:'ings',cmp:'ings'}[S.v]||S.v;
-document.getElementById('nav').innerHTML=[['home','🏠','Home'],['plan','📅','Planner'],['ings','🛒','Ingredients'],['saved','★','Saved'],['track','📊','Tracker'],['calc','🧮','Calculator']].map(t=>`<button class="${cur===t[0]?'on':''}" onclick="go('${t[0]}')"><span aria-hidden="true">${t[1]}</span>${t[2]}</button>`).join('')}
+document.getElementById('nav').innerHTML=[['home','Home'],['plan','Planner'],['ings','Ingredients'],['saved','Saved'],['track','Tracker'],['calc','Calculator']].map(t=>`<button class="${cur===t[0]?'on':''}" onclick="go('${t[0]}')">${t[1]}</button>`).join('')}
 render();
 </script></body></html>
