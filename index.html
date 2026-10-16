@@ -131,15 +131,15 @@ details.model code{background:var(--soft);border-radius:.45rem;padding:.06rem .5
 .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;background:repeating-linear-gradient(135deg,var(--soft) 0 10px,color-mix(in srgb,var(--acc) 12%,var(--card)) 10px 20px);color:var(--mut);font:700 .8rem inherit}
 .ph svg{width:2rem;height:2rem}
 .img,.ban{position:relative}
-.img>.up,.ban>.up{position:absolute;left:.6rem;bottom:.6rem;z-index:2;background:color-mix(in srgb,var(--card) 94%,transparent);color:var(--ink);border-radius:999px;padding:.3rem .8rem;font:800 .72rem inherit;cursor:pointer;box-shadow:var(--sh)}
-.img>.up:hover,.ban>.up:hover{background:var(--acc);color:var(--onacc)}
+
+
 .top b{text-transform:uppercase;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:1.05rem;letter-spacing:.03em}.top b svg{width:2rem;height:2rem}
 .hero::before,.hero::after{display:none}.hero{border-radius:1.2rem;padding:3.4rem 2rem 3rem;box-shadow:none;border:1px solid var(--line)}
 .hero h1{text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(2.2rem,7vw,4rem);max-width:40rem;line-height:1}
 main>h1{display:inline-block;background:var(--acc);color:#fff;padding:.2em .6em;border-radius:.25rem;font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:.5em}
 .strip{height:9rem;border-radius:1rem;background-size:cover;background-position:center;margin:.2rem 0 1.2rem;border:1px solid var(--line)}
 a.l,button.l{color:color-mix(in srgb,var(--acc) 62%,#fff)}
-.img:has(img) .up,.ban:has(img) .up{display:none}
+
 </style></head><body>
 <div class="top"><b><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#fff"/><path d="M11 8v6a2 2 0 0 0 2 2v8M13 8v6M15 8v6a2 2 0 0 1-2 2M21 8c-2 1-3 4-3 7h3v9" fill="none" stroke="#0d0d0d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Student Plate</b><div class="tools" role="toolbar" aria-label="Display settings">
 <span class="meta">Text size</span><button class="tb" onclick="fs(-1)" aria-label="Smaller text">A−</button><button class="tb" onclick="fs(1)" aria-label="Larger text">A+</button>
@@ -216,18 +216,15 @@ r16:{t:'Banana egg pancakes',sum:'Three ingredients, no flour.',prep:5,cook:10,s
 r17:{t:'Lentil and bean chilli',sum:'Cheap, high-fibre and good for batch cooking.',prep:10,cook:25,srv:3,prot:22,kcal:420,fat:3,carb:74,meal:'Lunch',diet:['vegetarian','dairy-free'],auth:'Student Kitchen',tech:['Frying','Boiling'],ing:[['beans',410,'g'],['lentils',410,'g'],['onion',100,'g'],['tomato',400,'g']],steps:['Fry the onion until soft.','Add the tomatoes, lentils and beans.','Simmer for 20 minutes.']}});
 
 /* ============================ IMAGES ============================
-   Put your photos in the "images" folder, named after the id, as .jpg:
-     recipes:      images/r1.jpg ... images/r17.jpg
-     ingredients:  images/chicken.jpg, images/rice.jpg, images/pasta.jpg ...
-   Anything missing shows the grey "Photo placeholder" automatically.
-   Optional: override a single image here, e.g.  IMG.r1='images/my-pasta.png'
+   Place images in the images/ folder alongside this HTML file:
+   recipes: images/r1.jpg through images/r17.jpg
+   ingredients: images/chicken.jpg, images/rice.jpg, etc.
+   banners: images/hero.jpg, images/ingredients-banner.jpg,
+            images/planner-banner.jpg
+   Missing images display a placeholder. No uploading is required.
    ================================================================ */
-const IMG={};
-let PH={};try{PH=JSON.parse(localStorage.getItem('sp_img'))||{}}catch(e){}
-const HOLDER='<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg><span>Photo placeholder</span></div>';
-const pic=id=>`<img src="${PH[id]||IMG[id]||'images/'+id+'.jpg'}" alt="" loading="lazy" onerror="this.outerHTML=HOLDER">`;
-const up=id=>`<label class="up" onclick="event.stopPropagation()"><input type="file" accept="image/*" hidden onchange="addPic('${id}',this)"><span class="a">Add photo</span><span class="c">Change photo</span></label>`;
-function addPic(id,inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),m=Math.min(1,800/im.width);c.width=im.width*m;c.height=im.height*m;c.getContext('2d').drawImage(im,0,0,c.width,c.height);PH[id]=c.toDataURL('image/jpeg',.82);try{localStorage.setItem('sp_img',JSON.stringify(PH))}catch(e){toast('Photo shown, but too large to remember after you close the page.')}render()};im.src=r.result};r.readAsDataURL(f)}
+const HOLDER='<div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg><span>Photo unavailable</span></div>';
+const pic=id=>`<img src="images/${id}.jpg" alt="" loading="lazy" onerror="this.outerHTML=HOLDER">`;
 const rart=k=>pic(k);
 const PHOTO={a:'images/hero.jpg',b:'images/ingredients-banner.jpg',c:'images/planner-banner.jpg'};
 /* ============================ APP STATE ============================ */
@@ -253,7 +250,7 @@ function tog(k){const on=!S.saved.has(k);on?S.saved.add(k):S.saved.delete(k);per
 toast(on?`★ Saved “${R[k].t}”. <button class="l" onclick="go('saved')">View saved recipes</button>`:`Removed “${R[k].t}” from saved recipes.`)}
 const bar=()=>`<div class="bar"><label>My store <select onchange="S.store=this.value;render()">${['Cheapest',...STORES].map(s=>`<option ${s===S.store?'selected':''}>${s}</option>`).join('')}</select></label></div>`;
 /* ============================ SCREENS ============================ */
-function card(k){const r=R[k],on=S.saved.has(k);return `<article class="card" onclick="go('recipe','${k}')"><div class="img">${rart(k)}${up(k)}<button class="sv ${on?'on':''}" onclick="event.stopPropagation();tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button></div><h3>${r.t}</h3><div class="meta">${r.sum}</div><div class="pp"><b>${z(ps(k))}</b> per serving</div><div class="meta">${z(cost(r))} total, ${r.prep+r.cook} min</div><div class="tags" style="margin-top:.5rem"><span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span>${r.diet.map(d=>`<span class="tag">${d}</span>`).join('')}</div></article>`}
+function card(k){const r=R[k],on=S.saved.has(k);return `<article class="card" onclick="go('recipe','${k}')"><div class="img">${rart(k)}<button class="sv ${on?'on':''}" onclick="event.stopPropagation();tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button></div><h3>${r.t}</h3><div class="meta">${r.sum}</div><div class="pp"><b>${z(ps(k))}</b> per serving</div><div class="meta">${z(cost(r))} total, ${r.prep+r.cook} min</div><div class="tags" style="margin-top:.5rem"><span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span>${r.diet.map(d=>`<span class="tag">${d}</span>`).join('')}</div></article>`}
 const hl=()=>Object.keys(R).filter(k=>ps(k)<=S.max&&(S.meal==='All'||R[k].meal===S.meal)&&(!S.q||(R[k].t+R[k].ing.map(l=>ING[l[0]].n).join(' ')).toLowerCase().includes(S.q)));
 function srch(v){S.q=v.trim().toLowerCase();const ks=hl();gr.innerHTML=ks.map(card).join('')||'<p>No recipes match. Clear the search, raise the limit or choose All.</p>';cnt.textContent=ks.length+' recipes shown'}
 function home(){const ks=hl(),low=Object.keys(R).sort((a,b)=>ps(a)-ps(b))[0];
@@ -264,7 +261,7 @@ return `<div class="hero" style="background:linear-gradient(90deg,#0d0d0def,#0d0
 <p class="meta" id="cnt">${ks.length} recipes shown</p><div class="grid" id="gr">${ks.map(card).join('')||'<p>No recipes match. Clear the search, raise the limit or choose All.</p>'}</div>
 ${model(['Recipe (card)','Price','Store','Meal Type'],'Cards reuse title, image, time and nutrition from <code>Recipe</code>. The per-serving cost is derived from <code>Price</code> records at your chosen store, so it changes with the store.')}`}
 function recipe(){const k=S.id,r=R[k],on=S.saved.has(k),more=Object.keys(R).filter(x=>x!==k&&R[x].auth===r.auth);
-return `<a class="l back" onclick="go('home')">← All recipes</a><div class="panel"><div class="ban">${rart(k)}${up(k)}</div><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem"><div><h1>${r.t}</h1><div class="meta">By ${r.auth}, ${r.meal}. ${r.prep} min prep + ${r.cook} min cook. Serves ${r.srv}.</div></div><div><button class="save ${on?'on':''}" onclick="tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button>${on?`<div class="meta" style="margin-top:.3rem">Saved. <a class="l" onclick="go('saved')">Open saved recipes</a></div>`:''}</div></div>
+return `<a class="l back" onclick="go('home')">← All recipes</a><div class="panel"><div class="ban">${rart(k)}</div><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem"><div><h1>${r.t}</h1><div class="meta">By ${r.auth}, ${r.meal}. ${r.prep} min prep + ${r.cook} min cook. Serves ${r.srv}.</div></div><div><button class="save ${on?'on':''}" onclick="tog('${k}')">${on?'★ Saved':'☆ Save recipe'}</button>${on?`<div class="meta" style="margin-top:.3rem">Saved. <a class="l" onclick="go('saved')">Open saved recipes</a></div>`:''}</div></div>
 <p>${r.sum}</p><div>${r.tech.map(t=>`<span class="tag">${t}</span>`).join('')}<span class="tag">${r.prot} g protein</span><span class="tag">${r.kcal} kcal</span></div>
 <div class="pp" style="margin-top:.6rem"><b>${z(ps(k))}</b> per serving, ${z(cost(r))} total</div></div>
 <div class="panel"><h2>Nutrition per serving</h2><div class="nut">${[['Energy',r.kcal+' kcal'],['Protein',r.prot+' g'],['Fat',r.fat+' g'],['Carbs',r.carb+' g']].map(x=>`<div><b>${x[1]}</b><span>${x[0]}</span></div>`).join('')}</div>
@@ -276,7 +273,7 @@ ${r.ing.map(l=>{const p=pick(l[0]);return `<tr><td><a class="l" onclick="go('ing
 <div class="panel"><h2>Method</h2><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol></div>
 ${more.length?`<h2>More from ${r.auth}</h2><div class="grid">${more.map(card).join('')}</div>`:''}
 ${model(['Recipe','Recipe Ingredient','Ingredient','Price','Cooking Technique','Chef/Author','Saved Recipe','Meal Log'],'Each ingredient row is a <code>Recipe Ingredient</code> (quantity, unit) that references an <code>Ingredient</code>. “More from this author” is a reverse query over the author reference.')}`}
-function ings(){return `<h1>Ingredients</h1><div class="strip" style="background-image:url(${PHOTO.b})"></div><p class="meta">Pick an ingredient to see its recipes and compare store prices.</p><div class="grid">${Object.keys(ING).map(k=>{const g=ING[k],c=cheapest(k);return `<article class="card" onclick="go('ing','${k}')"><div class="img">${pic(k)}${up(k)}</div><h3>${g.n}</h3><div class="meta">${g.cat}</div><div class="pp">Cheapest: <b>${z(c.amt)}</b></div><div class="meta">${c.product} at ${c.store}</div></article>`}).join('')}</div>
+function ings(){return `<h1>Ingredients</h1><div class="strip" style="background-image:url(${PHOTO.b})"></div><p class="meta">Pick an ingredient to see its recipes and compare store prices.</p><div class="grid">${Object.keys(ING).map(k=>{const g=ING[k],c=cheapest(k);return `<article class="card" onclick="go('ing','${k}')"><div class="img">${pic(k)}</div><h3>${g.n}</h3><div class="meta">${g.cat}</div><div class="pp">Cheapest: <b>${z(c.amt)}</b></div><div class="meta">${c.product} at ${c.store}</div></article>`}).join('')}</div>
 ${model(['Ingredient','Price','Store'],'The index lists every <code>Ingredient</code> with its lowest current <code>Price</code> and the <code>Store</code> that offers it.')}`}
 function ing(){const k=S.id,g=ING[k],rs=Object.keys(R).filter(x=>R[x].ing.some(l=>l[0]===k));
 return `<a class="l back" onclick="go('ings')">← All ingredients</a><div class="panel"><h1>${g.n}</h1><div class="meta">Category: ${g.cat}. ${g.kcal} kcal per 100 g. Also called ${g.alt}.</div>
